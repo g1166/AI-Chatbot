@@ -1,0 +1,55 @@
+AI Chatbot
+
+Develop an advanced AI chatbot capable of natural
+language processing and understanding. Implement
+dialogue management, sentiment analysis, and the
+ability to answer complex questions.
+
+Program
+
+#include <iostream>
+#include <string>
+#include <map>
+#include <algorithm>
+
+class SimpleChatbot {
+public:
+    void startChat() {
+        std::string userInput;
+        std::cout << "Hello! I'm a simple chatbot. How can I assist you today?" << std::endl;
+
+        while (true) {
+            std::getline(std::cin, userInput);
+            if (userInput == "exit") {
+                std::cout << "Goodbye!" << std::endl;
+                break;
+            }
+            respond(userInput);
+        }
+    }
+
+private:
+    void respond(const std::string& input) {
+        std::map<std::string, std::string> responses = {
+            {"hello", "Hi there!"},
+            {"how are you", "I'm just a program, but thanks for asking!"},
+            {"what is your name", "I am a chatbot created to assist you."},
+            {"tell me a joke", "Why did the scarecrow win an award? Because he was outstanding in his field!"}
+        };
+
+        std::string lowerInput = input;
+        std::transform(lowerInput.begin(), lowerInput.end(), lowerInput.begin(), ::tolower);
+
+        if (responses.find(lowerInput) != responses.end()) {
+            std::cout << responses[lowerInput] << std::endl;
+        } else {
+            std::cout << "I'm sorry, I don't understand that." << std::endl;
+        }
+    }
+};
+
+int main() {
+    SimpleChatbot chatbot;
+    chatbot.startChat();
+    return 0;
+}
